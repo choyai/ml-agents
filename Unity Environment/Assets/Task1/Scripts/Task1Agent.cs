@@ -14,6 +14,12 @@ public Vector3 startPosition = new Vector3(1.0f, 0.7f, -1.0f);
 // public Vector3 leftStart = new Vector3(-0.5f, 1f, 0f);
 public Vector3 rightStart = new Vector3(0.5f, 1f, 0f);
 public Vector3 torsoStart = new Vector3(0f, 0.75f, -0.5f);
+Vector3 rightVelocity = Vector3.zero;
+Vector3 rightAngVelocity = Vector3.zero;
+Vector3 TorsoVelocity = Vector3.zero;
+Vector3 rightAcc = Vector3.zero;
+Vector3 torsoAcc = Vector3.zero;
+Vector3 rightAng = Vector3.zero;
 Vector3 origin = new Vector3(0f, 0f, 0f);
 
 void Awake()
@@ -70,32 +76,33 @@ public override void AgentAction(float[] vectorAction, string textAction)
 {
         //Control of each limb
         // Vector3 leftAcc = Vector3.zero;
-        Vector3 rightAcc = Vector3.zero;
-        Vector3 torsoAcc = Vector3.zero;
+
         //Angular control of hands
         // Vector3 leftAng = Vector3.zero;
-        Vector3 rightAng = Vector3.zero;
 
-        // leftAcc.x = Mathf.Clamp(vectorAction[0], -100f, 100f);
-        // leftAcc.y = Mathf.Clamp(vectorAction[1], -100f, 100f);
-        // leftAcc.z = Mathf.Clamp(vectorAction[2], -100f, 100f);
+
         rightAcc.x = Mathf.Clamp(vectorAction[0], -100f, 100f);
         rightAcc.y = Mathf.Clamp(vectorAction[1], -100f, 100f);
         rightAcc.z = Mathf.Clamp(vectorAction[2], -100f, 100f);
         torsoAcc.x = Mathf.Clamp(vectorAction[3], -100f, 100f);
         torsoAcc.y = Mathf.Clamp(vectorAction[4], -100f, 100f);
         torsoAcc.z = Mathf.Clamp(vectorAction[5], -100f, 100f);
-        // leftAng.x = Mathf.Clamp(vectorAction[9], -100f, 100f);
-        // leftAng.y = Mathf.Clamp(vectorAction[10], -100f, 100f);
-        // leftAng.z = Mathf.Clamp(vectorAction[11], -100f, 100f);
+
         rightAng.x = Mathf.Clamp(vectorAction[6], -100f, 100f);
         rightAng.y = Mathf.Clamp(vectorAction[7], -100f, 100f);
         rightAng.z = Mathf.Clamp(vectorAction[8], -100f, 100f);
-        // LeftHand.gameObject.GetComponent<Rigidbody>().AddForce(leftAcc);
-        RightHand.gameObject.GetComponent<Rigidbody>().AddForce(rightAcc);
-        // LeftHand.gameObject.GetComponent<Rigidbody>().AddTorque(leftAng);
-        RightHand.gameObject.GetComponent<Rigidbody>().AddTorque(rightAng);
-        Torso.gameObject.GetComponent<Rigidbody>().AddForce(torsoAcc * 200f);
+
+}
+
+void FixedUpdate(){
+  Quaternion delta_rotation = Quaternion.Euler(RightHand.gameObject.transform.rotation.eulerAngles + rightAngVelocity * Time.deltaTime);
+  rightVelocity = RightHand.gameObject.GetComponent<Rigidbody>().velocity + rightAcc * Time.deltaTime;
+  rightAngVelocity = RightHand.gameObject.GetComponent<Rigidbody>().angularVelocity + rightAng * Time.deltaTime;
+  TorsoVelocity = Torso.gameObject.GetComponent<Rigidbody>().velocity + torsoAcc * Time.deltaTime;
+
+  RightHand.gameObject.GetComponent<Rigidbody>().MovePosition(RightHand.gameObject.transform.position + rightVelocity * Time.deltaTime);
+  RightHand.gameObject.GetComponent<Rigidbody>().MoveRotation(delta_rotation);
+  Torso.gameObject.GetComponent<Rigidbody>().MovePosition(Torso.gameObject.transform.position + TorsoVelocity * Time.deltaTime);
 }
 
 

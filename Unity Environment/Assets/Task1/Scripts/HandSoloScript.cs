@@ -38,6 +38,8 @@ void FixedUpdate()
                 rigid.transform.localPosition = Vector3.Distance(offset, Vector3.zero) * normalVector;
         }
         rigid.velocity = new Vector3(Mathf.Clamp(rigid.velocity.x, -100f, 100f), Mathf.Clamp(rigid.velocity.y, -100f, 100), Mathf.Clamp(rigid.velocity.z, -100f, 100));
+        Debug.Log(rigid.velocity);
         rigid.transform.localPosition = new Vector3(Mathf.Clamp(rigid.transform.localPosition.x, -100f, 100f), Mathf.Clamp(rigid.transform.localPosition.y, -100f, 100f), Mathf.Clamp(rigid.transform.localPosition.z, -100f, 100f));
 }
+
 }

@@ -91,11 +91,12 @@ public override void AgentAction(float[] vectorAction, string textAction)
         rightAng.x = Mathf.Clamp(vectorAction[3], -100f, 100f);
         rightAng.y = Mathf.Clamp(vectorAction[4], -100f, 100f);
         rightAng.z = Mathf.Clamp(vectorAction[5], -100f, 100f);
-        // LeftHand.gameObject.GetComponent<Rigidbody>().AddForce(leftAcc);
-        RightHand.gameObject.GetComponent<Rigidbody>().AddForce(rightAcc);
+        // LeftHand.gameObject.GetComponent<Rigidbody>().AddRelativeForce(leftAcc);
+        RightHand.gameObject.GetComponent<Rigidbody>().AddRelativeForce(rightAcc);
+        RightHand.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(Mathf.Clamp(RightHand.gameObject.GetComponent<Rigidbody>().velocity.x, -100f, 100f), Mathf.Clamp(RightHand.gameObject.GetComponent<Rigidbody>().velocity.y, -100f, 100), Mathf.Clamp(RightHand.gameObject.GetComponent<Rigidbody>().velocity.z, -100f, 100));
         // LeftHand.gameObject.GetComponent<Rigidbody>().AddTorque(leftAng);
         RightHand.gameObject.GetComponent<Rigidbody>().AddTorque(rightAng);
-        //Torso.gameObject.GetComponent<Rigidbody>().AddForce(torsoAcc * 200f);
+        //Torso.gameObject.GetComponent<Rigidbody>().AddRelativeForce(torsoAcc * 200f);
 }
 
 

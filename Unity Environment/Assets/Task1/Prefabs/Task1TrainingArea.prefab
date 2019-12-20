@@ -219,11 +219,9 @@ MonoBehaviour:
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 10
   prefab: {fileID: 2135434354345208761, guid: d5b82347de12d6f4698a411cbf2c8da7, type: 3}
-  LeftHand: {fileID: 0}
   RightHand: {fileID: 340329990299645733}
   Torso: {fileID: 8133942460933203646}
   startPosition: {x: 0, y: 0.7, z: 0}
-  leftStart: {x: -0.5, y: 1, z: 0}
   rightStart: {x: 0.5, y: 1, z: 0}
   torsoStart: {x: 0, y: 1, z: -0.5}
 --- !u!1 &8133942462353886039
@@ -426,6 +424,21 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 3563719896220017363, guid: 919262de1d939de4fa40b8f454704b3c,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3563719896220017363, guid: 919262de1d939de4fa40b8f454704b3c,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3563719896220017363, guid: 919262de1d939de4fa40b8f454704b3c,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3563719896220017375, guid: 919262de1d939de4fa40b8f454704b3c,
         type: 3}
       propertyPath: m_Enabled
@@ -530,12 +543,12 @@ PrefabInstance:
     - target: {fileID: 8626994057807758612, guid: 9d6f5c549c08c154bae4ea94a6cfc0ce,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8626994057807758612, guid: 9d6f5c549c08c154bae4ea94a6cfc0ce,
         type: 3}
       propertyPath: m_CollisionDetection
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 907210313035146888, guid: 9d6f5c549c08c154bae4ea94a6cfc0ce,
         type: 3}
